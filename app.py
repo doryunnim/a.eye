@@ -1,8 +1,9 @@
-from flask import Flask, jsonify, render_template
+import flask
+import werkzeug
 from subprocess import call
 from flask_socketio import SocketIO, send
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
 app.secret_key = "mysecret"
 
 socket_io = SocketIO(app)
@@ -19,26 +20,25 @@ def handle_request():
     imagefile.save(filename)
     return "Image Uploaded Successfully"
 
-@app.route('/')
-def hello_world():
-    return "Hello Gaemigo Project Home Page!!"
+#@app.route('/')
+#def hello_world():
+#    return "Hello Gaemigo Project Home Page!!"
     
-# @app.route('/chat')
-# def chatting():
-#     return render_template('chat.html')
+#@app.route('/chat')
+#def chatting():
+#    return render_template('chat.html')
 
-# @socket_io.on("message")
-# def request(message):
-#     print("message : "+ message)
-#     to_client = dict()
-#     if message == 'new_connect':
-#         to_client['message'] = "새로운 유저가 난입하였다!!"
-#         to_client['type'] = 'connect'
-#     else:
-#         to_client['message'] = message
-#         to_client['type'] = 'normal'
-#     # emit("response", {'data': message['data'], 'username': session['username']}, broadcast=True)
-#     send(to_client, broadcast=True)
-
-# if __name__ == '__main__':
-#     socket_io.run(app, debug=True, port=5000)
+#@socket_io.on("message")
+#def request(message):
+#    print("message : "+ message)
+#    to_client = dict()
+#    if message == 'new_connect':
+#        to_client['message'] = "new user!!!"
+#        to_client['type'] = 'connect'
+#    else:
+#        to_client['message'] = message
+#        to_client['type'] = 'normal'
+    # emit("response", {'data': message['data'], 'username': session['username']}, broadcast=True)
+#    send(to_client, broadcast=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True, port=5000)
