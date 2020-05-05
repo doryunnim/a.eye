@@ -7,6 +7,9 @@ import os
 from yolo_utils import infer_image, show_image
 import flask
 import werkzeug
+#import sys
+
+#sys.path.append('/home/ubuntu/.local/lib/python2.7/site-packages')
 
 def detection():
 	FLAGS = []
@@ -102,7 +105,6 @@ def detection():
 
 		# Do inference with given image
 		if FLAGS.image_path:
-			print('사진')
 			# Read the image
 			try:
 				img = cv.imread(FLAGS.image_path)
@@ -117,7 +119,6 @@ def detection():
 				result = text
 				return result
 		elif FLAGS.video_path:
-			print('동영상')
 			# Read the video
 			try:
 				vid = cv.VideoCapture(FLAGS.video_path)
