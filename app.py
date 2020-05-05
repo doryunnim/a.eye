@@ -1,8 +1,10 @@
-from flask import Flask, jsonify, render_template
+import flask
+import weakref
 from subprocess import call
 from flask_socketio import SocketIO, send
 
-app = Flask(__name__)
+app = flask.Flask(__name__)
+# app = Flask(__name__)
 app.secret_key = "mysecret"
 
 socket_io = SocketIO(app)
@@ -13,11 +15,13 @@ socket_io = SocketIO(app)
 
 @app.route('/', methods = ['GET', 'POST'])
 def handle_request():
-    imagefile = flask.request.files['image']
-    filename = werkzeug.utils.secure_filename(imagefile.filename)
-    print("\nReceived image File name : " + imagefile.filename)
-    imagefile.save(filename)
-    return "Image Uploaded Successfully"
+    # imagefile = flask.request.files['image']
+    # imagefile
+    # filename = werkzeug.utils.secure_filename(imagefile.filename)
+    # print("\nReceived image File name : " + imagefile.filename)
+    # imagefile.save(filename)
+    # exec(open(yolo.py).read())
+    return "ddd"
 
 @app.route('/')
 def hello_world():
@@ -40,5 +44,6 @@ def hello_world():
 #     # emit("response", {'data': message['data'], 'username': session['username']}, broadcast=True)
 #     send(to_client, broadcast=True)
 
-# if __name__ == '__main__':
-#     socket_io.run(app, debug=True, port=5000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True, port=5000)
+    # socket_io.run(app, host='0.0.0.0', debug=True, port=5000)
