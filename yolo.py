@@ -5,6 +5,24 @@ import subprocess
 import time
 import os
 from yolo_utils import infer_image, show_image
+import flask
+import werkzeug
+
+app = flask.Flask(__name__)
+# app = Flask(__name__)
+app.secret_key = "mysecret"
+
+@app.route('/', methods = ['GET', 'POST'])
+def handle_request():
+    imagefile = flask.request.files['image']
+    imagefile
+    filename = werkzeug.utils.secure_filename(imagefile.filename)
+    print("\nReceived image File name : " + imagefile.filename)
+    imagefile.save(filename)
+    return text
+	
+if __name__ == '__main__':
+	app.run(host='0.0.0.0', debug=True, port=5000)
 
 FLAGS = []
 
@@ -30,7 +48,7 @@ if __name__ == '__main__':
 
 	parser.add_argument('-i', '--image-path',
 		type=str,
-		default='./yolov3-coco/bearmouse.jpg',
+		default='./home/ubuntu/a.eye/androidFlask.jpg',
 		help='The path to the image file')
 
 	parser.add_argument('-v', '--video-path',
@@ -99,7 +117,6 @@ if __name__ == '__main__':
 
 	# Do inference with given image
 	if FLAGS.image_path:
-		print('사진')
 		# Read the image
 		try:
 			img = cv.imread(FLAGS.image_path)
@@ -111,9 +128,7 @@ if __name__ == '__main__':
 		finally:
 			img, boxes, confidences, classids, idxs, text = infer_image(net, layer_names, height, width, img, colors, labels, FLAGS)
 			# show_image(img)
-			print(text)
 	elif FLAGS.video_path:
-		print('동영상')
 		# Read the video
 		try:
 			vid = cv.VideoCapture(FLAGS.video_path)
@@ -129,7 +144,6 @@ if __name__ == '__main__':
 
 			    # Checking if the complete video is read
 				if not grabbed:
-					print('no video')
 					break
 
 				if width is None or height is None:
@@ -145,7 +159,6 @@ if __name__ == '__main__':
 
 
 				writer.write(frame)
-			print ("[INFO] Cleaning up...")
 			vid.release()
 			writer.release()
 
