@@ -23,13 +23,13 @@ def handle_request():
     # exec(open(yolo.py).read())
     return "ddd"
 
-@app.route('/')
-def hello_world():
-    return "Hello Gaemigo Project Home Page!!"
+#@app.route('/')
+#def hello_world():
+#    return "Hello Gaemigo Project Home Page!!"
     
-# @app.route('/chat')
-# def chatting():
-#     return render_template('chat.html')
+#@app.route('/chat')
+#def chatting():
+#    return render_template('chat.html')
 
 # @socket_io.on("message")
 # def request(message):

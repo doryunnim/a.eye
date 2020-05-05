@@ -9,7 +9,11 @@
 <body>
     <script type="text/javascript">
         $(document).ready(function(){
+<<<<<<< HEAD
             var sock = io.connect('http://172.30.1.44:5000');
+=======
+            var sock = io.connect('3.34.47.151:5000');
+>>>>>>> db1ec7734c98a9217ac724bc7e4ebf624aecb3e2
             sock.on('connect', function(){
                 var connect_string = 'new_connect';
                 sock.send(connect_string);
